@@ -30,3 +30,12 @@
 
 # Debug files
 *.dSYM/
+
+# CMake
+CMakeCache.txt
+CMakeFiles
+Makefile
+cmake_install.cmake
+install_manifest.txt
+
+src/radix
