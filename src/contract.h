@@ -139,27 +139,21 @@
 #define contract_invariant_non_null(x)                                         \
   _contract_invariant_non_null((x), #x, __FILE__, __LINE__, __func__)
 
-void _contract_fail(const char *file, int line, const char *func);
-void _contract_requires(bool expr, const char *expr_s, const char *file,
-                        int line, const char *func);
-void *_contract_requires_non_null(const void *x, const char *x_s,
-                                  const char *file, int line, const char *func);
-void *_contract_requires_equal(const void *a, const void *b, const char *a_s,
-                               const char *b_s, const char *file, int line,
-                               const char *func);
+void _contract_fail(const char *, int, const char *);
+void _contract_requires(bool, const char *, const char *, int, const char *);
+void *_contract_requires_non_null(const void *, const char *, const char *, int,
+                                  const char *);
+void *_contract_requires_equal(const void *, const void *, const char *,
+                               const char *, const char *, int, const char *);
 
-void _contract_invariant(bool expr, const char *expr_s, const char *file,
-                         int line, const char *func);
-void *_contract_invariant_non_null(const void *x, const char *x_s,
-                                   const char *file, int line,
-                                   const char *func);
+void _contract_invariant(bool, const char *, const char *, int, const char *);
+void *_contract_invariant_non_null(const void *, const char *, const char *,
+                                   int, const char *);
 
-void _contract_ensures(bool expr, const char *expr_s, const char *file,
-                       int line, const char *func);
-void *_contract_ensures_non_null(const void *x, const char *x_s,
-                                 const char *file, int line, const char *func);
-void *_contract_ensures_equal(const void *a, const void *b, const char *a_s,
-                              const char *b_s, const char *file, int line,
-                              const char *func);
+void _contract_ensures(bool, const char *, const char *, int, const char *);
+void *_contract_ensures_non_null(const void *, const char *, const char *, int,
+                                 const char *);
+void *_contract_ensures_equal(const void *, const void *, const char *,
+                              const char *, const char *, int, const char *);
 
 #endif /* CONTRACT_H */

@@ -7,8 +7,8 @@
 #include <stdlib.h>
 
 typedef struct String {
-	uint8_t length;
-	uint8_t string[UINT8_MAX];
+  uint8_t length;
+  uint8_t string[UINT8_MAX];
 } String;
 
 char *cstr_from_string(const String *);
