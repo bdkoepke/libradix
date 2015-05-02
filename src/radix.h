@@ -6,10 +6,9 @@
 typedef struct _Radix Radix;
 
 Radix *radix_new();
-bool radix_member(Radix *, int8_t *key);
-Maybe *radix_lookup(Radix *, int8_t *key);
-void radix_insert(Radix *, int8_t *key, int8_t *value);
-void radix_delete(Radix *, int8_t *key);
+Maybe *radix_lookup(const Radix *, const char *key);
+void radix_insert(Radix *, const char *key, const char *value);
+void radix_dump(const Radix *);
 void radix_free(Radix *);
 
 #endif
