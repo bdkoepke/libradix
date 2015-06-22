@@ -2,9 +2,10 @@
 #include "cstring.h"
 #include "hexdump.h"
 #include "radix.h"
+
+#include <limits.h>
 #include <stdint.h>
 #include <stdlib.h>
-#include <limits.h>
 #include <string.h>
 
 #pragma pack(push) /* push current alignment to stack */
@@ -42,15 +43,28 @@ Radix *radix_new() {
   return r;
 }
 
+Maybe *_radix_lookup(Node *n, const char *key) {
+	if (n->count == 0)
+		return maybe_nothing();
+	size_t key_len = strlen(key);
+	String *s = &n->s;
+	size_t i;
+	for (i = 0; i < n->count; i++)
+		switch (strcmp_s(key, key_len, s->string, s->length)) {
+			case GreaterThan:
+				//return _radix_lookup();
+
+			case EqualTo:
+				continue;
+			case LessThan:
+				return maybe_nothing();
+			default:
+				contract_fail();
+		}
+}
+
 Maybe *radix_lookup(const Radix *this, const char *key) {
-  Node *n = (Node *)this->tree;
-  if (n->count == 0)
-    return maybe_nothing();
-  if (n->count == 1)
-    return (strcmp_s(key, strlen(key), n->s.string, n->s.length))
-               ? maybe_new_just(n->s.string + n->s.length)
-               : maybe_nothing();
-  return maybe_nothing();
+  return _radix_lookup((Node *)this->tree, key);
 }
 
 void _radix_insert_empty(Radix *this, const char *key, const char *value) {

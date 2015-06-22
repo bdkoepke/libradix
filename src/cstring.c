@@ -1,4 +1,6 @@
 #include "cstring.h"
+#include "math.h"
+
 #include <string.h>
 
 char *cstr_from_string(const String *this) {
@@ -8,13 +10,14 @@ char *cstr_from_string(const String *this) {
   return c;
 }
 
-bool strcmp_s(const char *src, size_t src_len, const char *dst,
+Compare strcmp_s(const char *src, size_t src_len, const char *dst,
               size_t dst_len) {
-  if (src_len != dst_len)
-    return false;
+	size_t len = min(src_len, dst_len);
   size_t i;
-  for (i = 0; i < src_len; i++)
-    if (src[i] != dst[i])
-      return false;
-  return true;
+  for (i = 0; i < len; i++)
+    if (src[i] < dst[i])
+			return LessThan;
+		else if (src[i] > dst[i])
+			return GreaterThan;
+  return EqualTo;
 }

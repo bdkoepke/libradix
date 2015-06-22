@@ -1,6 +1,8 @@
 #ifndef CSTRING_H
 #define CSTRING_H
 
+#include "compare.h"
+
 #include <limits.h>
 #include <stdbool.h>
 #include <stdint.h>
@@ -12,6 +14,6 @@ typedef struct String {
 } String;
 
 char *cstr_from_string(const String *);
-bool strcmp_s(const char *src, size_t src_len, const char *dst, size_t dst_len);
+Compare strcmp_s(const char *src, size_t src_len, const char *dst, size_t dst_len);
 
 #endif
